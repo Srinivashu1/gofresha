@@ -15,13 +15,11 @@
                 <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th style="width:10px;">ID</th>
                             <th>Name</th>
                             <th>Subtitle</th>
                             <th>Image</th>
                             <th>Actions</th>
-                     
-
                         </tr>
                     </thead>
 
@@ -30,18 +28,15 @@
 
                         <?php $sno = 1; foreach ($products as $prod) :?>
                         <tr>
-                            <td><?= $sno++; ?></td>
+                            <td ><?= $sno++; ?></td>
                             <td><?= $prod['category_name']; ?></td>
                             <td><?= $prod['category_subtitle']; ?></td>
-                            <td><img src="<?= base_url('uploads/products/' . $prod['category_subtitle']); ?>" alt="No Image" height="100px" width="100px"></td>
+                            <td><img src="<?= base_url('uploads/categories/' . $prod['category_image']); ?>" alt="No Image" height="50px" width="80px"></td>
                             <td>
-                                <a href="<?= base_url('dashboard/editProduct/' . $prod['id']); ?>" class="btn btn-info">Edit</a>
+                                <a href="<?= base_url('dashboard/editProduct/' . $prod['id']); ?>" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                </td>
 
                         <?php endforeach; ?>
-                
-
-
-
 
                     </tbody>
 
@@ -65,7 +60,7 @@
             </div>
 
             <div class="modal-body">
-                <form id="category_Form">
+                <form id="category_Form" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="categoryName" class="form-label">Category Name</label>
                         <input type="text" class="form-control" id="categoryName" name="categoryName">
