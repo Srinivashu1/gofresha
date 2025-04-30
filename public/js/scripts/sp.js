@@ -1,12 +1,14 @@
-document.getElementById('categoryForm').addEventListener('submit', async function (e) {
+
+
+document.getElementById('category_Form').addEventListener('submit', async function (e) {
   e.preventDefault();
 
   const categoryName = document.getElementById('categoryName').value;
   const categorySubtitle = document.getElementById('categorySubtitle').value;
  
-
+  console.log(BASEURL_Categories_Add);
   try {
-    const response = await fetch('http://192.168.1.5/Gofresha/public/categories_add', {
+    const response = await fetch(BASEURL_Categories_Add, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -18,7 +20,7 @@ document.getElementById('categoryForm').addEventListener('submit', async functio
       console.log(data);
       window.location.href = data.redirect; // redirect to dashboard
 
-      
+      addProduct();
      
     } 
   } catch (error) {
@@ -29,49 +31,29 @@ document.getElementById('categoryForm').addEventListener('submit', async functio
 
 
 
+  
+const API_URL = 'http://192.168.195.19/Gofresha/public/';
 
 
 
-
-
-
-document.getElementById('categoryForm').addEventListener('submit', async function (e) {
-  e.preventDefault();
-
+async function addProduct() {
   try {
-    const response = await fetch(BASE_categories_add, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json' // Explicitly ask for JSON
-      },
-      body: JSON.stringify({
-        categoryName: document.getElementById('categoryName').value,
-        categorySubtitle: document.getElementById('categorySubtitle').value
-      })
-    });
-
-    // First check if the response is JSON
-    const contentType = response.headers.get('content-type');
-    if (!contentType || !contentType.includes('application/json')) {
-      const text = await response.text();
-      throw new Error(`Expected JSON but got: ${text.substring(0, 100)}...`);
-    }
-
+    const response = await fetch(API_URL + 'categories');
     const data = await response.json();
     
     if (data.status === 'success') {
-      alert('Success: ' + (data.message || 'Category added'));
-      console.log('Success:', data);
-      this.reset();
-    } else {
-      throw new Error(data.message || 'Server returned error');
+      const encodedData = encodeURIComponent(JSON.stringify(data.products));
+      window.location.href = `${data.redirect}?data=${encodedData}`;
     }
   } catch (error) {
-    console.error('Full error:', error);
-    alert('Error: ' + error.message);
+    console.error(error);
   }
-});
+
+
+
+  
+}
+
 
 
 

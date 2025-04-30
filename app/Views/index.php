@@ -100,7 +100,9 @@
                   </li>
                   <li><a><i class="fa fa-home"></i> Categories <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li ><a href="<?= base_url('categories') ?>">Manage Categories</a></li>
+                      <li ><a href="<?= base_url('categories') ?>"  onclick="addProduct()">Manage Categories</a></li>
+                      <li ><a  id="manageCategories">Manage Categories</a></li>
+
                       <li ><a href="#">Categories Order</a></li>
                     </ul>
                   </li>
@@ -338,6 +340,9 @@
   <script src="<?= base_url('vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js') ?>"></script>
   <!-- starrr -->
   <script src="<?= base_url('vendors/starrr/dist/starrr.js') ?>"></script>
+
+  <script src="<?= base_url('js/scripts/sp.js')?>"></script>
+
   
 
  

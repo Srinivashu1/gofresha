@@ -35,46 +35,46 @@ document.getElementById('form').addEventListener('submit', async function (e) {
 // JavaScript Part
 
 // Make sure you have BASE_URL defined for login form
-const BASEURL = 'http://192.168.1.5/Gofresha/public/'; 
+
 
 // Handle categoryForm submission
-const categoryForm = document.getElementById('categoryForm');
+// const categoryForm = document.getElementById('categoryForm2');
 
-console.log(categoryForm);
-if (categoryForm) {
-    categoryForm.addEventListener('submit', async function (e) {
-    e.preventDefault();
+// console.log(categoryForm);
+// if (categoryForm) {
+//     categoryForm.addEventListener('submit', async function (e) {
+//     e.preventDefault();
   
-    const categoryName = document.getElementById('categoryName').value;
-    const categorySubtitle = document.getElementById('categorySubtitle').value;
+//     const categoryName = document.getElementById('categoryName').value;
+//     const categorySubtitle = document.getElementById('categorySubtitle').value;
     
-    console.log(categoryName,categorySubtitle);
+//     console.log(categoryName,categorySubtitle);
  
 
-    try {
-      const response = await fetch(BASEURL + 'categories_add',{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ categoryName, categorySubtitle })
-      });
-      const data = await response.json();
-      if (data.status === 'success') {
-        console.log(data);
-        // window.location.href = data.redirect; 
+//     try {
+//       const response = await fetch(BASEURL + 'categories_add',{
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({ categoryName, categorySubtitle })
+//       });
+//       const data = await response.json();
+//       if (data.status === 'success') {
+//         console.log(data);
+//         // window.location.href = data.redirect; 
       
-      } 
-    } catch (error) {
+//       } 
+//     } catch (error) {
     
-      alert('Error: ' + error.message);
-    }
-  });
+//       alert('Error: ' + error.message);
+//     }
+//   });
   
   
-}else{
-  console.log('No category form found');
-}
+// }else{
+//   console.log('No category form found');
+// }
 
 // Handle login form submission
 // const loginForm = document.getElementById('form');

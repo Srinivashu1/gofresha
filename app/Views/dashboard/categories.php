@@ -3,9 +3,56 @@
 <?= $this->section('content') ?>
 
 <!-- Trigger Button -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
-    Add Category
-</button>
+<a type="button" class="btn btn-secondary  text-white" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+    <i class="fa fa-plus  "></i> Add Category
+</a>
+
+<div class="x_content">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box table-responsive">
+
+                <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Subtitle</th>
+                            <th>Image</th>
+                            <th>Actions</th>
+                     
+
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+
+                        <?php $sno = 1; foreach ($products as $prod) :?>
+                        <tr>
+                            <td><?= $sno++; ?></td>
+                            <td><?= $prod['category_name']; ?></td>
+                            <td><?= $prod['category_subtitle']; ?></td>
+                            <td><img src="<?= base_url('uploads/products/' . $prod['category_subtitle']); ?>" alt="No Image" height="100px" width="100px"></td>
+                            <td>
+                                <a href="<?= base_url('dashboard/editProduct/' . $prod['id']); ?>" class="btn btn-info">Edit</a>
+
+                        <?php endforeach; ?>
+                
+
+
+
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
@@ -18,7 +65,7 @@
             </div>
 
             <div class="modal-body">
-                <form class="categoryForm">
+                <form id="category_Form">
                     <div class="mb-3">
                         <label for="categoryName" class="form-label">Category Name</label>
                         <input type="text" class="form-control" id="categoryName" name="categoryName">
@@ -29,12 +76,12 @@
                         <input type="text" class="form-control" id="categorySubtitle" name="categorySubtitle">
                     </div>
 
-                    <!-- <div class="mb-3">
+                    <div class="mb-3">
                         <label for="categoryImage" class="form-label">Image</label>
                         <input type="file" class="form-control" id="categoryImage" name="categoryImage">
                         <small class="text-muted">*Choose a square image larger than 350×350px and smaller than
                             550×550px.</small>
-                    </div> -->
+                    </div>
 
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Add</button>
@@ -48,15 +95,9 @@
 </div>
 
 <script>
-const categoryName = document.getElementById('categoryName').value;
-const categorySubtitle = document.getElementById('categorySubtitle').value;
-
-console.log(categoryName, categorySubtitle);
+const BASEURL_Categories_Add = "<?= base_url('categories_add') ?>";
+console.log(BASEURL_Categories_Add);
 </script>
-
-<!-- <script src="<?= base_url('js/scripts/script.js')?>"></script> -->
-
-<script src="<?= base_url('js/scripts/api.js')?>"></script>
-
+<script src="<?= base_url('js/scripts/sp.js')?>"></script>
 
 <?= $this->endSection() ?>

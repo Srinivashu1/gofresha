@@ -18,6 +18,7 @@ $routes->get('dashboard', 'Home::dashboard');
 $routes->get('dash', 'Home::dash');
 
 $routes->get('categories', 'Home::categories');
+$routes->get('categoriespage', 'Home::categoriespage');
 
 $routes->post('categories_add', 'Home::addCategory');
 

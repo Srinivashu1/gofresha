@@ -5,7 +5,7 @@
 
 
 <!-- Trigger Button -->
-<form id="categoryForm">
+<form id="category_Form">
     <div class="mb-3">
         <label for="categoryName" class="form-label">Category Name</label>
         <input type="text" class="form-control" id="categoryName" name="categoryName">
@@ -24,13 +24,17 @@
     </div>
 </form>
 
+
 <script>
-const BASE_categories_add = "<?= base_url('categories_add') ?>";
-console.log(BASE_categories_add);
+const BASEURL_Categories_Add = "<?= base_url('categories_add') ?>";
+console.log(BASEURL_Categories_Add);
+
 </script>
+
+
+
+
 <script src="<?= base_url('js/scripts/sp.js')?>"></script>
-
-
 
 <?= $this->endSection() ?>
 

@@ -41,7 +41,6 @@ class Home extends BaseController
             log_message('debug', 'Decoded: ' . print_r($data, true));
 
 
-
             $username = $data['username'] ?? '';
             $password = $data['password'] ?? '';
 
@@ -102,94 +101,74 @@ class Home extends BaseController
 
     public function categories()
     {
-        return view('dashboard/categories');
+        $model = new AdminModel();
+        $model->tables('categories', 'id', ['category_name', 'category_subtitle','category_image']);
+
+        $products = $model->findAll();
+        return $this->response->setJSON([
+            'status' => 'success',
+            'products'=>$products,
+            'redirect' => base_url('categoriespage')
+        ]);
+        
     }
 
-    // public function addCategory()
-    // {
-    //     $model = new AdminModel();
-    //     $model->tables('categories', 'id', ['category_name', 'category_subtitle','category_image']);
+    public function categoriespage() 
+    {
+        $products = [];
+        if (!empty($_GET['data'])) {
+            $products = json_decode(urldecode($_GET['data']), true);
+        }
+        return view('dashboard/categories', ['products' => $products]);
+    }
+    
 
-    //     $input = $this->request->getBody();
-    //     log_message('debug', 'Raw Input: ' . $input);
 
-    //     $data = json_decode($input, true);
-    //     log_message('debug', 'Decoded: ' . print_r($data, true));
+
+
+    public function addCategory()
+    {
+        $model = new AdminModel();
+        $model->tables('categories', 'id', ['category_name', 'category_subtitle','category_image']);
+
+        $input = $this->request->getBody();
+        log_message('debug', 'Raw Input: ' . $input);
+
+        $data = json_decode($input, true);
+        log_message('debug', 'Decoded: ' . print_r($data, true));
         
-    //     $categoryName = $data['categoryName'] ?? ' ';
-    //     $categorySubtitle = $data['categorySubtitle'] ?? ' ';
+        $categoryName = $data['categoryName'] ?? ' ';
+        $categorySubtitle = $data['categorySubtitle'] ?? ' ';
 
 
      
 
-    //     $data = [
-    //         'category_name' => $categoryName, 
-    //         'category_subtitle' => $categorySubtitle,
-    //         // 'category_image' => $data['category_image'] ?? ' '
-    //     ];  
+        $data = [
+            'category_name' => $categoryName, 
+            'category_subtitle' => $categorySubtitle,
+            // 'category_image' => $data['category_image'] ?? ' '
+        ];  
 
-    //     $model->insert($data);
-
-
-    //     return $this->response->setJSON([
-    //         'status' => 'success',
-    //         'username' => $categoryName,
-    //         // 'redirect' => base_url('categories')
-    //     ]);
-
-    //     // log_message('debug', "USERNAME: $username | PASSWORD: $password");
+        $model->insert($data);
 
 
+        return $this->response->setJSON([
+            'status' => 'success',
+            'username' => $categoryName,
+            'redirect' => base_url('categories')
+        ]);
+
+        // log_message('debug', "USERNAME: $username | PASSWORD: $password");
 
 
 
-    //     // return redirect()->back();
-    // }
 
 
-    
-    public function addCategory()
-    {
-        // Force JSON response
-        header('Content-Type: application/json');
-
-        try {
-            // Get raw JSON input
-            $json = file_get_contents('php://input');
-            $data = json_decode($json, true);
-
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                throw new \Exception('Invalid JSON input');
-            }
-
-            // Validate input
-            if (empty($data['categoryName'])) {
-                throw new \Exception('Category name is required');
-            }
-
-            // Process data (example)
-            $categoryData = [
-                'name' => $data['categoryName'],
-                'subtitle' => $data['categorySubtitle'] ?? ''
-            ];
-
-            // Return JSON response
-            echo json_encode([
-                'status' => 'success',
-                'data' => $categoryData
-            ]);
-            exit;
-
-        } catch (\Exception $e) {
-            // Return JSON error
-            http_response_code(400);
-            echo json_encode([
-                'status' => 'error',
-                'message' => $e->getMessage()
-            ]);
-            exit;
-        }
+        // return redirect()->back();
     }
+
+
+
 
 
 }
