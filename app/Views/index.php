@@ -94,21 +94,31 @@
                   <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?= base_url('dashboard') ?>">Dashboard</a></li>
-                      <li><a href="index2.html">Dashboard2</a></li>
                       <li><a href="#">Categories</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-home"></i> Categories <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-th-list"></i> Categories <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li ><a href="<?= base_url('categories') ?>"  onclick="addProduct()">Manage Categories</a></li>
-                      <li ><a  id="manageCategories">Manage Categories</a></li>
-
+                      <li ><a href="<?= base_url('categories') ?>"  onclick="manageCategories()">Manage Categories</a></li>
                       <li ><a href="#">Categories Order</a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-list-ul"></i>Sub Categories <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li ><a href="<?= base_url('subcategories') ?>"  onclick="manageSubCategories()">Manage Sub Categories</a></li>
+                      <!-- <li ><a href="#">Sub Categories Order</a></li> -->
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-trello"></i>Products <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li ><a href="<?= base_url('products') ?>"  onclick="addproductview()">Add product</a></li>
+                      <li ><a href="<?= base_url('productsview') ?>"  onclick="productsview()">Manage Products </a></li>
+
+                      <!-- <li ><a href="#">Sub Categories Order</a></li> -->
+                    </ul>
+                  </li>
                 
-                <!-- <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a> -->
-                  
+           
                 </ul>
 
 
@@ -162,7 +172,7 @@
                 <li role="presentation" class="nav-item dropdown open">
                   <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
+                    <span class="badge bg-green">1</span>
                   </a>
                   <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
                     <li class="nav-item">
@@ -177,42 +187,7 @@
                         </span>
                       </a>
                     </li>
-                    <li class="nav-item">
-                      <a class="dropdown-item">
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="dropdown-item">
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="dropdown-item">
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
+                   
                     <li class="nav-item">
                       <div class="text-center">
                         <a class="dropdown-item">
@@ -230,8 +205,8 @@
         
 
         <!-- page content -->
-        <div class="right_col" role="main">
-          <!-- top tiles -->
+        <div class="right_col" role="main" >
+          <!-- top tiles --> 
           
           <?= $this->renderSection('content') ?>
          
@@ -342,6 +317,10 @@
   <script src="<?= base_url('vendors/starrr/dist/starrr.js') ?>"></script>
 
   <script src="<?= base_url('js/scripts/sp.js')?>"></script>
+
+  <script>
+    const API_URL = "<?= base_url() ?>";
+  </script>
 
   
 

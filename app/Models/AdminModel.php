@@ -16,11 +16,7 @@ class AdminModel extends Model
         $this->allowedFields = $allowedFields;
     }
 
-    // public function login($username, $password) {
-    //     return $this->where(['username' => $username, 'password' => $password])->first();
-    // }
 
-    // In AdminModel.php
     public function login($username, $password)
     {
         return $this->where('username', $username)
@@ -32,6 +28,6 @@ class AdminModel extends Model
     public function valueExists($value)
     {
         $strval = strtolower($value);
-        return $this->where('categories', $strval)->countAllResults() > 0; // Check if value exists
+        return $this->where('categories', $strval)->countAllResults() > 0; 
     }
 }
